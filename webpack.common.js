@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = {
-	entry: "./src/js/controller.ts",
+	entry: "./src/ts/controller.ts",
 
 	module: {
 		rules: [

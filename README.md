@@ -15,9 +15,18 @@
 
 Placeholder
 
+Live preview: [Link](https://forkify.darshanvaishya.xyz/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5e90623e-a903-425a-8292-98b20c3f3e80/deploy-status)](https://app.netlify.com/sites/loving-hugle-52e1c6/deploys)
+
 ### Technologies used
 
-Placeholder
+- HTML
+- SASS (SCSS)
+- TypeScript
+- Forkify API
+- Webpack
+- Babel
 
 ## Challenges faced
 

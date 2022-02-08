@@ -1,3 +1,8 @@
+interface recipeIngredientsInterface {
+	description: string;
+	quantity: number;
+	unit: string;
+}
 export interface recipeInterface {
 	id: number;
 	title: string;
@@ -6,5 +11,5 @@ export interface recipeInterface {
 	image_url: string;
 	servings: number;
 	cooking_time: number;
-	ingredients: object[];
+	ingredients: [object: recipeIngredientsInterface];
 }

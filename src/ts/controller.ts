@@ -2,8 +2,8 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "../sass/main.scss";
 
-import { recipeInterface } from "./util/interfaces";
-import { getRecipeMarkup, getSpinnerMarkup } from "./util/markup";
+import * as model from "./model";
+import recipeView from "./views/recipeView";
 
 const recipeContainer = document.querySelector(".recipe") as HTMLDivElement;
 
@@ -21,32 +21,19 @@ function timeout(s: number): Promise<void> {
 	});
 }
 
-function renderSpinner(parentEl: HTMLElement): void {
-	parentEl.innerHTML = getSpinnerMarkup();
-}
-
-async function showRecipe(): Promise<void> {
+async function controlRecipes(): Promise<void> {
 	try {
-		const URL: string = "https://forkify-api.herokuapp.com/api/v2/recipes/";
 		const id: string = window.location.hash.slice(1);
 		if (!id) return;
+		recipeView.renderSpinner(recipeContainer);
 
-		renderSpinner(recipeContainer);
-
-		// Loading recipe from API
-		const response = await fetch(URL + id);
-		const data = await response.json();
-		if (!response.ok) throw new Error(`${data.message} (${response.status})`);
-
-		const recipe: recipeInterface = data.data.recipe;
-
-		// Rendering the recipe
-		recipeContainer.innerHTML = getRecipeMarkup(recipe);
+		await model.loadRecipe(id);
+		recipeView.render(model.state.recipe);
 	} catch (err) {
 		alert(err);
 	}
 }
 
 ["hashchange", "load"].forEach((event) =>
-	window.addEventListener(event, showRecipe)
+	window.addEventListener(event, controlRecipes)
 );

@@ -1,5 +1,23 @@
-import { recipeInterface } from "./interfaces";
+import { recipeInterface, ingredientsInterface } from "./interfaces";
 import { iconPath } from "../controller";
+
+function getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
+	ingredients
+		.map((ingredient: ingredientsInterface) => {
+			return `
+							<li class="recipe__ingredient">
+								<svg class="recipe__icon">
+									<use href="${iconPath}#icon-check"></use>
+								</svg>
+								<div class="recipe__quantity">${ingredient.quantity || ""}</div>
+								<div class="recipe__description">
+									<span class="recipe__unit">${ingredient.unit}</span>
+									${ingredient.description}
+								</div>
+							</li>`;
+		})
+		.join("");
+}
 
 export function getRecipeMarkup(recipe: recipeInterface): string {
 	return `
@@ -62,21 +80,7 @@ export function getRecipeMarkup(recipe: recipeInterface): string {
           <ul class="recipe__ingredient-list">
 
 
-						${recipe.ingredients
-							.map((ingredient) => {
-								return `
-							<li class="recipe__ingredient">
-								<svg class="recipe__icon">
-									<use href="${iconPath}#icon-check"></use>
-								</svg>
-								<div class="recipe__quantity">${ingredient.quantity || ""}</div>
-								<div class="recipe__description">
-									<span class="recipe__unit">${ingredient.unit}</span>
-									${ingredient.description}
-								</div>
-							</li>`;
-							})
-							.join("")}
+						${getIngredientsMarkup(recipe.ingredients)}
 
           </ul>
         </div>

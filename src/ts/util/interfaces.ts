@@ -1,4 +1,4 @@
-interface recipeIngredientsInterface {
+export interface ingredientsInterface {
 	description: string;
 	quantity: number;
 	unit: string;
@@ -11,5 +11,9 @@ export interface recipeInterface {
 	image_url: string;
 	servings: number;
 	cooking_time: number;
-	ingredients: [object: recipeIngredientsInterface];
+	ingredients: [object: ingredientsInterface];
+}
+
+export interface stateInterface {
+	recipe: recipeInterface;
 }

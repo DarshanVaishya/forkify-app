@@ -3,17 +3,17 @@ import "regenerator-runtime/runtime";
 import "../sass/main.scss";
 
 import { recipeInterface } from "./util/interfaces";
-import { getRecipeMarkup } from "./util/markup";
+import { getRecipeMarkup, getSpinnerMarkup } from "./util/markup";
 
 const recipeContainer = document.querySelector(".recipe") as HTMLDivElement;
 
 // Hack to get icon.svg file name with the contenthash
-const iconPath: string = document
+export const iconPath: string = document
 	.querySelector(".search__icon")
 	.children[0].getAttribute("href")
 	.split("#")[0];
 
-function timeout(s: number) {
+function timeout(s: number): Promise<void> {
 	return new Promise(function (_, reject) {
 		setTimeout(function () {
 			reject(new Error(`Request took too long! Timeout after ${s} second`));
@@ -21,20 +21,25 @@ function timeout(s: number) {
 	});
 }
 
-const URL =
-	"https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886";
+function renderSpinner(parentEl: HTMLElement): void {
+	parentEl.innerHTML = getSpinnerMarkup();
+}
 
-async function showRecipe() {
+async function showRecipe(): Promise<void> {
 	try {
+		renderSpinner(recipeContainer);
+
 		// Loading recipe from API
-		const response = await fetch(URL);
+		const response = await fetch(
+			"https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886"
+		);
 		const data = await response.json();
 		if (!response.ok) throw new Error(`${data.message} (${response.status})`);
 
 		const recipe: recipeInterface = data.data.recipe;
 
 		// Rendering the recipe
-		recipeContainer.innerHTML = getRecipeMarkup(recipe, iconPath);
+		recipeContainer.innerHTML = getRecipeMarkup(recipe);
 	} catch (err) {
 		alert(err);
 	}

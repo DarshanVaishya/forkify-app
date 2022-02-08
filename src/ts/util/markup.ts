@@ -1,6 +1,7 @@
 import { recipeInterface } from "./interfaces";
+import { iconPath } from "../controller";
 
-export function getRecipeMarkup(recipe: recipeInterface, iconPath: string) {
+export function getRecipeMarkup(recipe: recipeInterface): string {
 	return `
         <figure class="recipe__fig">
           <img src="${recipe.image_url}" alt="${
@@ -99,6 +100,16 @@ export function getRecipeMarkup(recipe: recipeInterface, iconPath: string) {
               <use href="${iconPath}#icon-arrow-right"></use>
             </svg>
           </a>
+        </div>
+  `;
+}
+
+export function getSpinnerMarkup(): string {
+	return `
+				<div class="spinner">
+          <svg>
+            <use href="${iconPath}#icon-loader"></use>
+          </svg>
         </div>
   `;
 }

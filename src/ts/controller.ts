@@ -2,8 +2,8 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import "../sass/main.scss";
 
-import { recipeInterface } from "./interfaces";
-import { getRecipeMarkup } from "./markup";
+import { recipeInterface } from "./util/interfaces";
+import { getRecipeMarkup } from "./util/markup";
 
 const recipeContainer = document.querySelector(".recipe") as HTMLDivElement;
 
@@ -12,7 +12,6 @@ const iconPath: string = document
 	.querySelector(".search__icon")
 	.children[0].getAttribute("href")
 	.split("#")[0];
-console.log(iconPath);
 
 function timeout(s: number) {
 	return new Promise(function (_, reject) {
@@ -21,8 +20,6 @@ function timeout(s: number) {
 		}, s * 1000);
 	});
 }
-
-// const URL = "https://forkify-api.herokuapp.com/v2";
 
 const URL =
 	"https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886";

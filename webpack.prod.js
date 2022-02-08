@@ -26,13 +26,6 @@ module.exports = merge(common, {
 				use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
 			},
 			{
-				test: /svg$/,
-				type: "asset/resource",
-				generator: {
-					filename: "./img/[name][ext]",
-				},
-			},
-			{
 				test: /\.m?js$/,
 				exclude: /node_modules/,
 				use: {

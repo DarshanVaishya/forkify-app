@@ -5,6 +5,13 @@ import { recipeInterface } from "./interfaces";
 
 const recipeContainer = document.querySelector(".recipe") as HTMLDivElement;
 
+// Hack to get icon.svg file name with the contenthash
+const iconPath: string = document
+	.querySelector(".search__icon")
+	.children[0].getAttribute("href")
+	.split("#")[0];
+console.log(iconPath);
+
 function timeout(s: number) {
 	return new Promise(function (_, reject) {
 		setTimeout(function () {
@@ -41,7 +48,7 @@ async function showRecipe() {
         <div class="recipe__details">
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="img/icons.svg#icon-clock"></use>
+              <use href="${iconPath}#icon-clock"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--minutes">${
 							recipe.cooking_time
@@ -50,7 +57,7 @@ async function showRecipe() {
           </div>
           <div class="recipe__info">
             <svg class="recipe__info-icon">
-              <use href="img/icons.svg#icon-users"></use>
+              <use href="${iconPath}#icon-users"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--people">${
 							recipe.servings
@@ -60,12 +67,12 @@ async function showRecipe() {
             <div class="recipe__info-buttons">
               <button class="btn--tiny btn--increase-servings">
                 <svg>
-                  <use href="img/icons.svg#icon-minus-circle"></use>
+                  <use href="${iconPath}#icon-minus-circle"></use>
                 </svg>
               </button>
               <button class="btn--tiny btn--increase-servings">
                 <svg>
-                  <use href="img/icons.svg#icon-plus-circle"></use>
+                  <use href="${iconPath}#icon-plus-circle"></use>
                 </svg>
               </button>
             </div>
@@ -73,12 +80,12 @@ async function showRecipe() {
 
           <div class="recipe__user-generated">
             <svg>
-              <use href="img/icons.svg#icon-user"></use>
+              <use href="${iconPath}#icon-user"></use>
             </svg>
           </div>
           <button class="btn--round">
             <svg class="">
-              <use href="img/icons.svg#icon-bookmark-fill"></use>
+              <use href="${iconPath}#icon-bookmark-fill"></use>
             </svg>
           </button>
         </div>
@@ -93,7 +100,7 @@ async function showRecipe() {
 								return `
 							<li class="recipe__ingredient">
 								<svg class="recipe__icon">
-									<use href="img/icons.svg#icon-check"></use>
+									<use href="${iconPath}#icon-check"></use>
 								</svg>
 								<div class="recipe__quantity">${ingredient.quantity || ""}</div>
 								<div class="recipe__description">
@@ -123,7 +130,7 @@ async function showRecipe() {
           >
             <span>Directions</span>
             <svg class="search__icon">
-              <use href="img/icons.svg#icon-arrow-right"></use>
+              <use href="${iconPath}#icon-arrow-right"></use>
             </svg>
           </a>
         </div>

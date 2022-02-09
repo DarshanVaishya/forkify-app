@@ -13,6 +13,13 @@ class RecipeView {
 	renderSpinner(parentEl: HTMLElement): void {
 		parentEl.innerHTML = getSpinnerMarkup();
 	}
+
+	// TODO: Learn how to give this a type
+	addHandlerRender(handler: any) {
+		["hashchange", "load"].forEach((event) => {
+			window.addEventListener(event, handler);
+		});
+	}
 }
 
 export default new RecipeView();

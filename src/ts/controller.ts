@@ -22,10 +22,13 @@ async function controlRecipes(): Promise<void> {
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe);
 	} catch (err) {
-		alert(err);
+		console.error(`${err} - #######################`);
+		recipeContainer.innerHTML = "";
 	}
 }
 
-["hashchange", "load"].forEach((event) =>
-	window.addEventListener(event, controlRecipes)
-);
+function init() {
+	recipeView.addHandlerRender(controlRecipes);
+}
+
+init();

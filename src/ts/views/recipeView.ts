@@ -5,13 +5,13 @@ class RecipeView {
 	private parentElement = document.querySelector(".recipe");
 	private data: recipeInterface;
 
-	render(data: recipeInterface) {
+	render(data: recipeInterface, iconPath: string) {
 		this.data = data;
-		this.parentElement.innerHTML = getRecipeMarkup(this.data);
+		this.parentElement.innerHTML = getRecipeMarkup(this.data, iconPath);
 	}
 
-	renderSpinner(parentEl: HTMLElement): void {
-		parentEl.innerHTML = getSpinnerMarkup();
+	renderSpinner(parentEl: HTMLElement, iconPath: string): void {
+		parentEl.innerHTML = getSpinnerMarkup(iconPath);
 	}
 
 	// TODO: Learn how to give this a type

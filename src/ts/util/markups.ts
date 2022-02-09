@@ -1,7 +1,9 @@
 import { recipeInterface, ingredientsInterface } from "./interfaces";
-import { iconPath } from "../controller";
 
-function getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
+function getIngredientsMarkup(
+	ingredients: [object: ingredientsInterface],
+	iconPath: string
+) {
 	return ingredients
 		.map((ingredient: ingredientsInterface) => {
 			return `
@@ -19,7 +21,10 @@ function getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
 		.join("");
 }
 
-export function getRecipeMarkup(recipe: recipeInterface): string {
+export function getRecipeMarkup(
+	recipe: recipeInterface,
+	iconPath: string
+): string {
 	return `
         <figure class="recipe__fig">
           <img src="${recipe.image_url}" alt="${
@@ -80,7 +85,7 @@ export function getRecipeMarkup(recipe: recipeInterface): string {
           <ul class="recipe__ingredient-list">
 
 
-						${getIngredientsMarkup(recipe.ingredients)}
+						${getIngredientsMarkup(recipe.ingredients, iconPath)}
 
           </ul>
         </div>
@@ -108,7 +113,7 @@ export function getRecipeMarkup(recipe: recipeInterface): string {
   `;
 }
 
-export function getSpinnerMarkup(): string {
+export function getSpinnerMarkup(iconPath: string): string {
 	return `
 				<div class="spinner">
           <svg>

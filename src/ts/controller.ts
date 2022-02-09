@@ -13,14 +13,6 @@ export const iconPath: string = document
 	.children[0].getAttribute("href")
 	.split("#")[0];
 
-function timeout(s: number): Promise<void> {
-	return new Promise(function (_, reject) {
-		setTimeout(function () {
-			reject(new Error(`Request took too long! Timeout after ${s} second`));
-		}, s * 1000);
-	});
-}
-
 async function controlRecipes(): Promise<void> {
 	try {
 		const id: string = window.location.hash.slice(1);

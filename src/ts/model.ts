@@ -1,4 +1,6 @@
-import { recipeInterface, stateInterface } from "./util/interfaces";
+import { stateInterface, dataInterface } from "./util/interfaces";
+import { API_URL } from "./util/config";
+import { getJSON } from "./util/helpers";
 
 export const state: stateInterface = {
 	recipe: undefined,
@@ -6,14 +8,10 @@ export const state: stateInterface = {
 
 export async function loadRecipe(id: string) {
 	try {
-		const url: string = "https://forkify-api.herokuapp.com/api/v2/recipes/";
-		const response = await fetch(url + id);
-		const data = await response.json();
-		if (!response.ok) throw new Error(`${data.message} (${response.status})`);
-
+		const data: dataInterface = await getJSON(API_URL + id);
 		state.recipe = data.data.recipe;
 		console.log(state.recipe);
 	} catch (err) {
-		alert(err);
+		console.error(`${err} - #######################`);
 	}
 }

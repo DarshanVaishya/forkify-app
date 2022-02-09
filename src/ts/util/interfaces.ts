@@ -17,3 +17,9 @@ export interface recipeInterface {
 export interface stateInterface {
 	recipe: recipeInterface;
 }
+
+export interface dataInterface {
+	status: string;
+	message?: string;
+	data?: any;
+}

@@ -2,7 +2,7 @@ import { recipeInterface, ingredientsInterface } from "./interfaces";
 import { iconPath } from "../controller";
 
 function getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
-	ingredients
+	return ingredients
 		.map((ingredient: ingredientsInterface) => {
 			return `
 							<li class="recipe__ingredient">

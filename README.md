@@ -4,6 +4,7 @@
 
 - [Overview](#overview)
   - [Technologies used](#technologies-used)
+  - [Installation steps](#installation-steps)
 - [Challenges faced](#challenges-faced)
 - [Learning outcomes](#learning-outcomes)
 - [Screenshots](#screenshots)
@@ -13,7 +14,7 @@
 
 ## Overview
 
-Placeholder
+Forkify app is a web app where users can search through more than 1 million recipes to find what they need. It shows all the necessary ingredients and how to make the dish. The users can bookmark their favourite recipes as well as add their own ones to the website. It has a beautiful and feature rich UI. The website is fully response in variety of screen sizes.
 
 Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 
@@ -27,6 +28,16 @@ Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 - Forkify API
 - Webpack
 - Babel
+
+### Installation steps
+```bash
+git clone https://github.com/DarshanVaishya/forkify-app
+cd forkify-app
+yarn install
+yarn run build # To generate files
+yarn run start # To start a local server
+```
+If you want to use NPM, then replace `yarn` with `npm` in all of the commands.
 
 ## Challenges faced
 

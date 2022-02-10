@@ -30,6 +30,14 @@ Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 - Babel
 
 ### Installation steps
+Requirements: `node` and `npm`
+
+If you do not have `yarn` installed, use this command to install it
+```bash
+npm install yarn
+```
+
+To install use these commands
 ```bash
 git clone https://github.com/DarshanVaishya/forkify-app
 cd forkify-app

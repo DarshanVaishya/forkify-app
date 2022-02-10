@@ -67,7 +67,7 @@ Placeholder
 
 ## Collaboration
 
-If you have found a bug, suggesting an improvement or want to collaborate then please raise an [issue](https://github.com/DarshanVaishya/{REPO_NAME}/issues) or create an [pull request](https://github.com/DarshanVaishya/{REPO_NAME}/pulls).
+If you have found a bug, suggesting an improvement or want to collaborate then please raise an [issue](https://github.com/DarshanVaishya/forkify-app/issues) or create an [pull request](https://github.com/DarshanVaishya/forkify-app/pulls).
 
 ## Contact me
 

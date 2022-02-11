@@ -17,13 +17,13 @@ async function controlRecipes(): Promise<void> {
 	try {
 		const id: string = window.location.hash.slice(1);
 		if (!id) return;
-		recipeView.renderSpinner(recipeContainer, iconPath);
+		recipeView.renderSpinner(iconPath);
 
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe, iconPath);
 	} catch (err) {
 		console.error(`${err} - #######################`);
-		recipeContainer.innerHTML = "";
+		recipeView.renderError(iconPath);
 	}
 }
 

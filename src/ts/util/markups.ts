@@ -122,3 +122,29 @@ export function getSpinnerMarkup(iconPath: string): string {
         </div>
   `;
 }
+
+export function getErrorMarkup(message: string, iconPath: string): string {
+	return `
+				<div class="error">
+            <div>
+              <svg>
+                <use href="${iconPath}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>
+  `;
+}
+
+export function getMessageMarkup(message: string, iconPath: string): string {
+	return `
+				<div class="message">
+            <div>
+              <svg>
+                <use href="${iconPath}#icon-alert-triangle"></use>
+              </svg>
+            </div>
+            <p>${message}</p>
+          </div>
+  `;
+}

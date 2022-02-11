@@ -12,7 +12,6 @@ export async function loadRecipe(id: string) {
 		state.recipe = data.data.recipe;
 		console.log(state.recipe);
 	} catch (err) {
-		console.error(`${err} - #######################`);
-		alert(err);
+		throw err;
 	}
 }

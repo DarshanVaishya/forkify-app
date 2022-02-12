@@ -16,6 +16,7 @@ export interface recipeInterface {
 
 export interface stateInterface {
 	recipe: recipeInterface;
+	search: { query: string; results: [object] };
 }
 
 export interface dataInterface {

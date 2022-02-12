@@ -4,8 +4,7 @@ import "../sass/main.scss";
 
 import * as model from "./model";
 import recipeView from "./views/recipeView";
-
-const recipeContainer = document.querySelector(".recipe") as HTMLDivElement;
+import searchView from "./views/searchView";
 
 // Hack to get icon.svg file name with the contenthash
 const iconPath: string = document
@@ -27,8 +26,22 @@ async function controlRecipes(): Promise<void> {
 	}
 }
 
+async function controlSearchResults() {
+	try {
+		const query = searchView.getQuery();
+		if (!query) return;
+
+		await model.loadSearchResults(query);
+	} catch (err) {
+		console.error(`${err} - #######################`);
+	}
+}
+
+controlSearchResults();
+
 function init() {
 	recipeView.addHandlerRender(controlRecipes);
+	searchView.addHandlerSearch(controlSearchResults);
 }
 
 init();

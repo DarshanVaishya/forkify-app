@@ -9,8 +9,8 @@ import { getJSON } from "./util/helpers";
 export const state: stateInterface = {
 	recipe: undefined,
 	search: {
-		query: "",
-		results: [{}],
+		query: undefined,
+		results: undefined,
 	},
 };
 
@@ -29,7 +29,6 @@ export async function loadSearchResults(query: string) {
 
 		const data: dataInterface = await getJSON(`${API_URL}?search=${query}`);
 		state.search.results = data.data.recipes;
-		console.log(state.search.results);
 	} catch (err) {
 		throw err;
 	}

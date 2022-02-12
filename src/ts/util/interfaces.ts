@@ -14,9 +14,16 @@ export interface recipeInterface {
 	ingredients: [object: ingredientsInterface];
 }
 
+export interface recipePreviewInterface {
+	id: string;
+	image_url: string;
+	publisher: string;
+	title: string;
+}
+
 export interface stateInterface {
 	recipe: recipeInterface;
-	search: { query: string; results: [object] };
+	search: { query: string; results: [recipePreviewInterface] };
 }
 
 export interface dataInterface {

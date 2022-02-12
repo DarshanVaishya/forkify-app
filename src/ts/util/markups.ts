@@ -1,4 +1,8 @@
-import { recipeInterface, ingredientsInterface } from "./interfaces";
+import {
+	recipeInterface,
+	ingredientsInterface,
+	recipePreviewInterface,
+} from "./interfaces";
 
 function getIngredientsMarkup(
 	ingredients: [object: ingredientsInterface],
@@ -69,9 +73,6 @@ export function getRecipeMarkup(
           </div>
 
           <div class="recipe__user-generated">
-            <svg>
-              <use href="${iconPath}#icon-user"></use>
-            </svg>
           </div>
           <button class="btn--round">
             <svg class="">
@@ -146,5 +147,24 @@ export function getMessageMarkup(message: string, iconPath: string): string {
             </div>
             <p>${message}</p>
           </div>
+  `;
+}
+
+export function getRecipePreviewMarkup(
+	recipe: recipePreviewInterface,
+	iconPath: string
+) {
+	return `
+    <li class="preview">
+      <a class="preview__link" href="#${recipe.id}">
+        <figure class="preview__fig">
+          <img src="${recipe.image_url}" alt="${recipe.title}" />
+        </figure>
+        <div class="preview__data">
+          <h4 class="preview__title">${recipe.title}</h4>
+          <p class="preview__publisher">${recipe.publisher}</p>
+        </div>
+      </a>
+    </li>
   `;
 }

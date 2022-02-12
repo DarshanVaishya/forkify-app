@@ -1,5 +1,4 @@
 import {
-	getRecipeMarkup,
 	getSpinnerMarkup,
 	getErrorMarkup,
 	getMessageMarkup,

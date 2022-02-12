@@ -1,5 +1,4 @@
 import View from "./view";
-import { state } from "../model";
 import { recipePreviewInterface } from "../util/interfaces";
 import { getRecipePreviewMarkup } from "../util/markups";
 

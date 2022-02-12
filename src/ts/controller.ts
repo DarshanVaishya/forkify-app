@@ -7,11 +7,7 @@ import recipeView from "./views/recipeView";
 import searchView from "./views/searchView";
 import resultView from "./views/resultView";
 
-// Hack to get icon.svg file name with the contenthash
-const iconPath: string = document
-	.querySelector(".search__icon")
-	.children[0].getAttribute("href")
-	.split("#")[0];
+const iconPath = new URL("../img/icons.svg", import.meta.url).pathname;
 
 async function controlRecipes(): Promise<void> {
 	try {

@@ -11,7 +11,6 @@ export default class View {
 	}
 
 	renderError(iconPath: string, message: string = this.errorMessage) {
-		console.log("RENDER ERROR");
 		this.parentElement.innerHTML = this.getErrorMarkup(message, iconPath);
 	}
 
@@ -32,26 +31,26 @@ export default class View {
 	getErrorMarkup(message: string, iconPath: string): string {
 		return `
 				<div class="error">
-            <div>
-              <svg>
-                <use href="${iconPath}#icon-alert-triangle"></use>
-              </svg>
-            </div>
-            <p>${message}</p>
+          <div>
+            <svg>
+              <use href="${iconPath}#icon-alert-triangle"></use>
+            </svg>
           </div>
+          <p>${message}</p>
+        </div>
   `;
 	}
 
 	getMessageMarkup(message: string, iconPath: string): string {
 		return `
 				<div class="message">
-            <div>
-              <svg>
-                <use href="${iconPath}#icon-alert-triangle"></use>
-              </svg>
-            </div>
-            <p>${message}</p>
+          <div>
+            <svg>
+              <use href="${iconPath}#icon-alert-triangle"></use>
+            </svg>
           </div>
+          <p>${message}</p>
+        </div>
   `;
 	}
 }

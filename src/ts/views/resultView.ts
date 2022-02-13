@@ -7,10 +7,7 @@ class ResultView extends View {
 
 	render(results: recipePreviewInterface[], iconPath: string): void {
 		this.parentElement.innerHTML = "";
-		console.log(this.parentElement);
-
 		if (!results || (Array.isArray(results) && results.length === 0)) {
-			console.log("IN THE IF CONDITION");
 			this.renderError(iconPath);
 		}
 

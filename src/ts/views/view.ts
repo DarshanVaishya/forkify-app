@@ -1,8 +1,3 @@
-import {
-	getSpinnerMarkup,
-	getErrorMarkup,
-	getMessageMarkup,
-} from "../util/markups";
 import { recipeInterface } from "../util/interfaces";
 
 export default class View {
@@ -12,15 +7,50 @@ export default class View {
 	protected message: string;
 
 	renderSpinner(iconPath: string): void {
-		this.parentElement.innerHTML = getSpinnerMarkup(iconPath);
+		this.parentElement.innerHTML = this.getSpinnerMarkup(iconPath);
 	}
 
 	renderError(iconPath: string, message: string = this.errorMessage) {
-		console.log("RENDER ERROR");
-		this.parentElement.innerHTML = getErrorMarkup(message, iconPath);
+		this.parentElement.innerHTML = this.getErrorMarkup(message, iconPath);
 	}
 
 	renderMessage(iconPath: string, message: string = this.message) {
-		this.parentElement.innerHTML = getMessageMarkup(message, iconPath);
+		this.parentElement.innerHTML = this.getMessageMarkup(message, iconPath);
+	}
+
+	getSpinnerMarkup(iconPath: string): string {
+		return `
+				<div class="spinner">
+          <svg>
+            <use href="${iconPath}#icon-loader"></use>
+          </svg>
+        </div>
+  `;
+	}
+
+	getErrorMarkup(message: string, iconPath: string): string {
+		return `
+				<div class="error">
+          <div>
+            <svg>
+              <use href="${iconPath}#icon-alert-triangle"></use>
+            </svg>
+          </div>
+          <p>${message}</p>
+        </div>
+  `;
+	}
+
+	getMessageMarkup(message: string, iconPath: string): string {
+		return `
+				<div class="message">
+          <div>
+            <svg>
+              <use href="${iconPath}#icon-alert-triangle"></use>
+            </svg>
+          </div>
+          <p>${message}</p>
+        </div>
+  `;
 	}
 }

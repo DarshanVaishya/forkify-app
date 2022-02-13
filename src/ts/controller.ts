@@ -30,7 +30,7 @@ async function controlSearchResults(): Promise<void> {
 		if (!query) return;
 
 		await model.loadSearchResults(query);
-		resultView.render(model.state.search.results, iconPath);
+		resultView.render(model.getSearchResultsPage(), iconPath);
 	} catch (err) {
 		console.error(`${err} - #######################`);
 	}

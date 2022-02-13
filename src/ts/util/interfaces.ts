@@ -24,6 +24,7 @@ export interface recipePreviewInterface {
 export interface stateInterface {
 	recipe: recipeInterface;
 	search: { query: string; results: [recipePreviewInterface] };
+	page: number;
 }
 
 export interface dataInterface {

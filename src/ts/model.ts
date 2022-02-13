@@ -1,9 +1,5 @@
-import {
-	stateInterface,
-	dataInterface,
-	recipeInterface,
-} from "./util/interfaces";
-import { API_URL } from "./util/config";
+import { stateInterface, dataInterface } from "./util/interfaces";
+import { API_URL, RESULTS_PER_PAGE } from "./util/config";
 import { getJSON } from "./util/helpers";
 
 export const state: stateInterface = {
@@ -12,6 +8,7 @@ export const state: stateInterface = {
 		query: undefined,
 		results: undefined,
 	},
+	page: 1,
 };
 
 export async function loadRecipe(id: string) {
@@ -32,4 +29,14 @@ export async function loadSearchResults(query: string) {
 	} catch (err) {
 		throw err;
 	}
+}
+
+export function getSearchResultsPage(page: number = 1) {
+	const start = (page - 1) * RESULTS_PER_PAGE;
+	let end = page * RESULTS_PER_PAGE;
+
+	if (end > state.search.results.length) end = state.search.results.length;
+	state.page = page;
+
+	return state.search.results.slice(start, end);
 }

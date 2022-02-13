@@ -7,30 +7,28 @@ import recipeView from "./views/recipeView";
 import searchView from "./views/searchView";
 import resultView from "./views/resultView";
 
-const iconPath = new URL("../img/icons.svg", import.meta.url).pathname;
-
 async function controlRecipes(): Promise<void> {
 	try {
 		const id: string = window.location.hash.slice(1);
 		if (!id) return;
-		recipeView.renderSpinner(iconPath);
+		recipeView.renderSpinner();
 
 		await model.loadRecipe(id);
-		recipeView.render(model.state.recipe, iconPath);
+		recipeView.render(model.state.recipe);
 	} catch (err) {
 		console.error(`${err} - #######################`);
-		recipeView.renderError(iconPath);
+		recipeView.renderError();
 	}
 }
 
 async function controlSearchResults(): Promise<void> {
 	try {
-		resultView.renderSpinner(iconPath);
+		resultView.renderSpinner();
 		const query = searchView.getQuery();
 		if (!query) return;
 
 		await model.loadSearchResults(query);
-		resultView.render(model.getSearchResultsPage(), iconPath);
+		resultView.render(model.getSearchResultsPage());
 	} catch (err) {
 		console.error(`${err} - #######################`);
 	}

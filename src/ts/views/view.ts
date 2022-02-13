@@ -1,3 +1,4 @@
+import { iconPath } from "../util/config";
 import { recipeInterface } from "../util/interfaces";
 
 export default class View {
@@ -6,19 +7,19 @@ export default class View {
 	protected errorMessage: string;
 	protected message: string;
 
-	renderSpinner(iconPath: string): void {
-		this.parentElement.innerHTML = this.getSpinnerMarkup(iconPath);
+	renderSpinner(): void {
+		this.parentElement.innerHTML = this.getSpinnerMarkup();
 	}
 
-	renderError(iconPath: string, message: string = this.errorMessage) {
-		this.parentElement.innerHTML = this.getErrorMarkup(message, iconPath);
+	renderError(message: string = this.errorMessage) {
+		this.parentElement.innerHTML = this.getErrorMarkup(message);
 	}
 
-	renderMessage(iconPath: string, message: string = this.message) {
-		this.parentElement.innerHTML = this.getMessageMarkup(message, iconPath);
+	renderMessage(message: string = this.message) {
+		this.parentElement.innerHTML = this.getMessageMarkup(message);
 	}
 
-	getSpinnerMarkup(iconPath: string): string {
+	getSpinnerMarkup(): string {
 		return `
 				<div class="spinner">
           <svg>
@@ -28,7 +29,7 @@ export default class View {
   `;
 	}
 
-	getErrorMarkup(message: string, iconPath: string): string {
+	getErrorMarkup(message: string): string {
 		return `
 				<div class="error">
           <div>
@@ -41,7 +42,7 @@ export default class View {
   `;
 	}
 
-	getMessageMarkup(message: string, iconPath: string): string {
+	getMessageMarkup(message: string): string {
 		return `
 				<div class="message">
           <div>

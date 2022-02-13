@@ -1,3 +1,4 @@
+import { iconPath } from "../util/config";
 import { ingredientsInterface, recipeInterface } from "../util/interfaces";
 import View from "./view";
 
@@ -6,9 +7,9 @@ class RecipeView extends View {
 	errorMessage = "We couldn't find that recipe. Please try another one!";
 	message = "";
 
-	render(data: recipeInterface, iconPath: string) {
+	render(data: recipeInterface) {
 		this.data = data;
-		this.parentElement.innerHTML = this.getRecipeMarkup(this.data, iconPath);
+		this.parentElement.innerHTML = this.getRecipeMarkup(this.data);
 	}
 
 	// TODO: Learn how to give this a type
@@ -18,10 +19,7 @@ class RecipeView extends View {
 		});
 	}
 
-	getIngredientsMarkup(
-		ingredients: [object: ingredientsInterface],
-		iconPath: string
-	) {
+	getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
 				return `
@@ -39,7 +37,7 @@ class RecipeView extends View {
 			.join("");
 	}
 
-	getRecipeMarkup(recipe: recipeInterface, iconPath: string): string {
+	getRecipeMarkup(recipe: recipeInterface): string {
 		return `
         <figure class="recipe__fig">
           <img src="${recipe.image_url}" alt="${
@@ -95,7 +93,7 @@ class RecipeView extends View {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-						${this.getIngredientsMarkup(recipe.ingredients, iconPath)}
+						${this.getIngredientsMarkup(recipe.ingredients)}
           </ul>
         </div>
 

@@ -35,6 +35,13 @@ module.exports = merge(common, {
 					},
 				},
 			},
+			{
+				test: /og-image.png$/,
+				type: "asset/resource",
+				generator: {
+					filename: "./img/[name][ext]",
+				},
+			},
 		],
 	},
 

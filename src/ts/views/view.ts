@@ -1,11 +1,19 @@
 import { iconPath } from "../util/config";
-import { recipeInterface } from "../util/interfaces";
 
 export default class View {
 	protected parentElement: HTMLElement;
-	protected data: recipeInterface;
 	protected errorMessage: string;
 	protected message: string;
+	protected data: any;
+
+	render(data: any) {
+		this.data = data;
+		this.parentElement.innerHTML = this.generateMarkup();
+	}
+
+	generateMarkup(): string {
+		throw new Error("Method not implemented.");
+	}
 
 	renderSpinner(): void {
 		this.parentElement.innerHTML = this.getSpinnerMarkup();

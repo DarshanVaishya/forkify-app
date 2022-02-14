@@ -7,8 +7,9 @@ export const state: stateInterface = {
 	search: {
 		query: undefined,
 		results: undefined,
+		page: 1,
+		resultsPerPage: RESULTS_PER_PAGE,
 	},
-	page: 1,
 };
 
 export async function loadRecipe(id: string) {
@@ -36,7 +37,7 @@ export function getSearchResultsPage(page: number = 1) {
 	let end = page * RESULTS_PER_PAGE;
 
 	if (end > state.search.results.length) end = state.search.results.length;
-	state.page = page;
+	state.search.page = page;
 
 	return state.search.results.slice(start, end);
 }

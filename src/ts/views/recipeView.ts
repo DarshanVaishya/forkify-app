@@ -3,13 +3,14 @@ import { ingredientsInterface, recipeInterface } from "../util/interfaces";
 import View from "./view";
 
 class RecipeView extends View {
+	data: recipeInterface;
 	parentElement = document.querySelector(".recipe") as HTMLDivElement;
 	errorMessage = "We couldn't find that recipe. Please try another one!";
 	message = "";
 
 	render(data: recipeInterface) {
 		this.data = data;
-		this.parentElement.innerHTML = this.getRecipeMarkup(this.data);
+		this.parentElement.innerHTML = this.getRecipeMarkup();
 	}
 
 	// TODO: Learn how to give this a type
@@ -37,14 +38,14 @@ class RecipeView extends View {
 			.join("");
 	}
 
-	getRecipeMarkup(recipe: recipeInterface): string {
+	getRecipeMarkup(): string {
 		return `
         <figure class="recipe__fig">
-          <img src="${recipe.image_url}" alt="${
-			recipe.title
+          <img src="${this.data.image_url}" alt="${
+			this.data.title
 		}" class="recipe__img" />
           <h1 class="recipe__title">
-            <span>${recipe.title}</span>
+            <span>${this.data.title}</span>
           </h1>
         </figure>
 
@@ -54,7 +55,7 @@ class RecipeView extends View {
               <use href="${iconPath}#icon-clock"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--minutes">${
-							recipe.cooking_time
+							this.data.cooking_time
 						}</span>
             <span class="recipe__info-text">minutes</span>
           </div>
@@ -63,7 +64,7 @@ class RecipeView extends View {
               <use href="${iconPath}#icon-users"></use>
             </svg>
             <span class="recipe__info-data recipe__info-data--people">${
-							recipe.servings
+							this.data.servings
 						}</span>
             <span class="recipe__info-text">servings</span>
 
@@ -93,7 +94,7 @@ class RecipeView extends View {
         <div class="recipe__ingredients">
           <h2 class="heading--2">Recipe ingredients</h2>
           <ul class="recipe__ingredient-list">
-						${this.getIngredientsMarkup(recipe.ingredients)}
+						${this.getIngredientsMarkup(this.data.ingredients)}
           </ul>
         </div>
 
@@ -102,13 +103,13 @@ class RecipeView extends View {
           <p class="recipe__directions-text">
             This recipe was carefully designed and tested by
             <span class="recipe__publisher">${
-							recipe.publisher
+							this.data.publisher
 						}</span>. Please check out
             directions at their website.
           </p>
           <a
             class="btn--small recipe__btn"
-            href="${recipe.source_url}"
+            href="${this.data.source_url}"
             target="_blank"
           >
             <span>Directions</span>

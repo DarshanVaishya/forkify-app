@@ -6,6 +6,7 @@ import * as model from "./model";
 import recipeView from "./views/recipeView";
 import searchView from "./views/searchView";
 import resultView from "./views/resultView";
+import paginationView from "./views/paginationVIew";
 
 async function controlRecipes(): Promise<void> {
 	try {
@@ -29,6 +30,7 @@ async function controlSearchResults(): Promise<void> {
 
 		await model.loadSearchResults(query);
 		resultView.render(model.getSearchResultsPage());
+		paginationView.render(model.state.search);
 	} catch (err) {
 		console.error(`${err} - #######################`);
 	}

@@ -21,10 +21,16 @@ export interface recipePreviewInterface {
 	title: string;
 }
 
+export interface stateSearchInterface {
+	query: string;
+	results: recipePreviewInterface[];
+	page: number;
+	resultsPerPage: number;
+}
+
 export interface stateInterface {
 	recipe: recipeInterface;
-	search: { query: string; results: [recipePreviewInterface] };
-	page: number;
+	search: stateSearchInterface;
 }
 
 export interface dataInterface {

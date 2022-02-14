@@ -12,37 +12,20 @@ class PaginationView extends View {
 			this.data.results.length / this.data.resultsPerPage
 		);
 
-		if (currentPage === 1 && numPages > 1) {
-			return this.getNextButton(currentPage);
-		}
-
-		if (currentPage === numPages && numPages > 1) {
-			return this.getPrevButton(currentPage);
-		}
-
-		if (currentPage < numPages) {
-			return this.getPrevButton(currentPage) + this.getNextButton(currentPage);
-		}
+		if (currentPage === 1 && numPages > 1) return this.getButton("next");
+		if (currentPage === numPages && numPages > 1) return this.getButton("prev");
+		if (currentPage < numPages)
+			return this.getButton("prev") + this.getButton("next");
 	}
 
-	getPrevButton(currentPage: number): string {
+	getButton(type: string): string {
+		const currentPage = this.data.page;
 		return `
-			<button class="btn--inline pagination__btn--prev">
+			<button class="btn--inline pagination__btn--${type}">
 				<svg class="search__icon">
-					<use href="${iconPath}#icon-arrow-left"></use>
+					<use href="${iconPath}#icon-arrow-${type === "prev" ? "left" : "right"}"></use>
 				</svg>
-				<span>Page ${currentPage - 1}</span>
-			</button>
-		`;
-	}
-
-	getNextButton(currentPage: number): string {
-		return `
-			<button class="btn--inline pagination__btn--next">
-				<svg class="search__icon">
-					<use href="${iconPath}#icon-arrow-right"></use>
-				</svg>
-				<span>Page ${currentPage + 1}</span>
+				<span>Page ${type === "prev" ? currentPage - 1 : currentPage + 1}</span>
 			</button>
 		`;
 	}

@@ -47,3 +47,13 @@ export function getSearchResultsPage(
 
 	return state.search.results.slice(start, end);
 }
+
+export function updateServings(newServing: number) {
+	state.recipe.ingredients.forEach((ingredient) => {
+		ingredient.quantity = +(
+			(newServing * ingredient.quantity) /
+			state.recipe.servings
+		).toFixed(2);
+	});
+	state.recipe.servings = newServing;
+}

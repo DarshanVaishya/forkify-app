@@ -20,6 +20,19 @@ class RecipeView extends View {
 		});
 	}
 
+	addHandlerUpdateServings(handler: Function) {
+		this.parentElement.addEventListener("click", (e: Event) => {
+			const target = e.target as HTMLElement;
+			const btn = target.closest(".btn--update-servings") as HTMLButtonElement;
+			if (!btn) return;
+
+			console.log(btn, btn.dataset.updateTo);
+			const updateTo: number = +btn.dataset.updateTo;
+
+			if (updateTo > 0) handler(updateTo);
+		});
+	}
+
 	getIngredientsMarkup(ingredients: [object: ingredientsInterface]): string {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
@@ -69,12 +82,16 @@ class RecipeView extends View {
             <span class="recipe__info-text">servings</span>
 
             <div class="recipe__info-buttons">
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to="${
+								this.data.servings - 1
+							}">
                 <svg>
                   <use href="${iconPath}#icon-minus-circle"></use>
                 </svg>
               </button>
-              <button class="btn--tiny btn--increase-servings">
+              <button class="btn--tiny btn--update-servings" data-update-to=${
+								this.data.servings + 1
+							}>
                 <svg>
                   <use href="${iconPath}#icon-plus-circle"></use>
                 </svg>

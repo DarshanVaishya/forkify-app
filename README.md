@@ -1,16 +1,19 @@
 # Forkify App (WIP)
 
-## Table of contents
-
-- [Overview](#overview)
-  - [Technologies used](#technologies-used)
-  - [Installation steps](#installation-steps)
-- [Challenges faced](#challenges-faced)
-- [Learning outcomes](#learning-outcomes)
-- [Screenshots](#screenshots)
-- [Directory structure](#directory-structure)
-- [Collaboration](#collaboration)
-- [Contact me](#contact-me)
+<details>
+ <summary><strong>Table of Contents</strong> (click to expand)</summary>
+  
+  - [Overview](#overview)
+    - [Technologies used](#technologies-used)
+    - [Installation steps](#installation-steps)
+  - [Challenges faced](#challenges-faced)
+  - [Learning outcomes](#learning-outcomes)
+  - [Screenshots](#screenshots)
+  - [Directory structure](#directory-structure)
+  - [Collaboration](#collaboration)
+  - [Contact me](#contact-me)
+  
+</details>
 
 ## Overview
 

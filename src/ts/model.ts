@@ -1,4 +1,8 @@
-import { stateInterface, dataInterface } from "./util/interfaces";
+import {
+	stateInterface,
+	dataInterface,
+	recipePreviewInterface,
+} from "./util/interfaces";
 import { API_URL, RESULTS_PER_PAGE } from "./util/config";
 import { getJSON } from "./util/helpers";
 
@@ -32,7 +36,9 @@ export async function loadSearchResults(query: string) {
 	}
 }
 
-export function getSearchResultsPage(page: number = 1) {
+export function getSearchResultsPage(
+	page: number = 1
+): recipePreviewInterface[] {
 	const start = (page - 1) * RESULTS_PER_PAGE;
 	let end = page * RESULTS_PER_PAGE;
 

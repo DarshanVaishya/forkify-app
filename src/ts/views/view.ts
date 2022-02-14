@@ -6,7 +6,7 @@ export default class View {
 	protected message: string;
 	protected data: any;
 
-	render(data: any) {
+	render(data: any): void {
 		this.data = data;
 		this.parentElement.innerHTML = this.generateMarkup();
 	}
@@ -19,11 +19,11 @@ export default class View {
 		this.parentElement.innerHTML = this.getSpinnerMarkup();
 	}
 
-	renderError(message: string = this.errorMessage) {
+	renderError(message: string = this.errorMessage): void {
 		this.parentElement.innerHTML = this.getErrorMarkup(message);
 	}
 
-	renderMessage(message: string = this.message) {
+	renderMessage(message: string = this.message): void {
 		this.parentElement.innerHTML = this.getMessageMarkup(message);
 	}
 

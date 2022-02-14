@@ -18,7 +18,7 @@ class ResultView extends View {
 		});
 	}
 
-	getRecipePreviewMarkup(recipe: recipePreviewInterface) {
+	getRecipePreviewMarkup(recipe: recipePreviewInterface): string {
 		return `
 			<li class="preview">
 				<a class="preview__link" href="#${recipe.id}">

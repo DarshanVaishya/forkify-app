@@ -36,12 +36,12 @@ async function controlSearchResults(): Promise<void> {
 	}
 }
 
-function controlPagination(page: number) {
+function controlPagination(page: number): void {
 	resultView.render(model.getSearchResultsPage(page));
 	paginationView.render(model.state.search);
 }
 
-function init() {
+function init(): void {
 	recipeView.addHandlerRender(controlRecipes);
 	searchView.addHandlerSearch(controlSearchResults);
 	paginationView.addHandlerClick(controlPagination);

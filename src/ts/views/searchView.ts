@@ -10,7 +10,7 @@ class SearchView {
 		return query;
 	}
 
-	private clearInput() {
+	private clearInput(): void {
 		this.searchBox.value = "";
 		this.searchBox.blur();
 	}

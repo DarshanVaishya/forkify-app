@@ -6,7 +6,7 @@ class PaginationView extends View {
 	parentElement = document.querySelector(".pagination") as HTMLDivElement;
 	data: stateSearchInterface;
 
-	addHandlerClick(handler: Function) {
+	addHandlerClick(handler: Function): void {
 		this.parentElement.addEventListener("click", (e: Event) => {
 			const target = e.target as HTMLElement;
 			const btn = target.closest("button") as HTMLButtonElement;
@@ -17,7 +17,7 @@ class PaginationView extends View {
 		});
 	}
 
-	generateMarkup() {
+	generateMarkup(): string {
 		const currentPage = this.data.page;
 		const numPages = Math.ceil(
 			this.data.results.length / this.data.resultsPerPage

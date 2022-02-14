@@ -14,13 +14,13 @@ class RecipeView extends View {
 	}
 
 	// TODO: Learn how to give this a type
-	addHandlerRender(handler: any) {
+	addHandlerRender(handler: any): void {
 		["hashchange", "load"].forEach((event) => {
 			window.addEventListener(event, handler);
 		});
 	}
 
-	getIngredientsMarkup(ingredients: [object: ingredientsInterface]) {
+	getIngredientsMarkup(ingredients: [object: ingredientsInterface]): string {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
 				return `

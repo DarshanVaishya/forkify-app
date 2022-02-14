@@ -6,6 +6,17 @@ class PaginationView extends View {
 	parentElement = document.querySelector(".pagination") as HTMLDivElement;
 	data: stateSearchInterface;
 
+	addHandlerClick(handler: Function) {
+		this.parentElement.addEventListener("click", (e: Event) => {
+			const target = e.target as HTMLElement;
+			const btn = target.closest("button") as HTMLButtonElement;
+			if (!btn) return;
+
+			const goto = +btn.dataset.goto;
+			handler(goto);
+		});
+	}
+
 	generateMarkup() {
 		const currentPage = this.data.page;
 		const numPages = Math.ceil(
@@ -16,16 +27,19 @@ class PaginationView extends View {
 		if (currentPage === numPages && numPages > 1) return this.getButton("prev");
 		if (currentPage < numPages)
 			return this.getButton("prev") + this.getButton("next");
+		else return "";
 	}
 
 	getButton(type: string): string {
-		const currentPage = this.data.page;
+		let currentPage = this.data.page;
 		return `
-			<button class="btn--inline pagination__btn--${type}">
+			<button data-goto="${
+				type === "prev" ? --currentPage : ++currentPage
+			}" class="btn--inline pagination__btn--${type}">
 				<svg class="search__icon">
 					<use href="${iconPath}#icon-arrow-${type === "prev" ? "left" : "right"}"></use>
 				</svg>
-				<span>Page ${type === "prev" ? currentPage - 1 : currentPage + 1}</span>
+				<span>Page ${currentPage}</span>
 			</button>
 		`;
 	}

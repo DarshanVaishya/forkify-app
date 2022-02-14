@@ -32,13 +32,12 @@ Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 ### Installation steps
 Requirements: `node` and `npm`
 
-If you do not have `yarn` installed, use this command to install it
-```bash
+If you do not have `yarn` installed, install it using
+```sh
 npm install yarn
 ```
-
-To install use these commands
-```bash
+Now
+```sh
 git clone https://github.com/DarshanVaishya/forkify-app
 cd forkify-app
 yarn install

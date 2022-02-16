@@ -10,7 +10,7 @@ class RecipeView extends View {
 
 	render(data: recipeInterface) {
 		this.data = data;
-		this.parentElement.innerHTML = this.getRecipeMarkup();
+		this.parentElement.innerHTML = this.generateMarkup();
 	}
 
 	// TODO: Learn how to give this a type
@@ -26,9 +26,7 @@ class RecipeView extends View {
 			const btn = target.closest(".btn--update-servings") as HTMLButtonElement;
 			if (!btn) return;
 
-			console.log(btn, btn.dataset.updateTo);
 			const updateTo: number = +btn.dataset.updateTo;
-
 			if (updateTo > 0) handler(updateTo);
 		});
 	}
@@ -51,7 +49,7 @@ class RecipeView extends View {
 			.join("");
 	}
 
-	getRecipeMarkup(): string {
+	generateMarkup(): string {
 		return `
         <figure class="recipe__fig">
           <img src="${this.data.image_url}" alt="${

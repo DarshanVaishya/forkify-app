@@ -11,6 +11,25 @@ export default class View {
 		this.parentElement.innerHTML = this.generateMarkup();
 	}
 
+	update(data: any) {
+		this.data = data;
+		const newMarkup = this.generateMarkup();
+		const newDOM = document.createRange().createContextualFragment(newMarkup);
+		const newEls = Array.from(newDOM.querySelectorAll("*"));
+		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
+
+		for (let i = 0; i < curEls.length; i++) {
+			if (newEls[i].isEqualNode(curEls[i])) continue;
+
+			if (newEls[i].firstChild?.nodeValue.trim() !== "")
+				curEls[i].textContent = newEls[i].textContent;
+
+			Array.from(newEls[i].attributes).forEach((attr) => {
+				curEls[i].setAttribute(attr.name, attr.value);
+			});
+		}
+	}
+
 	generateMarkup(): string {
 		throw new Error("Method not implemented.");
 	}
@@ -19,11 +38,11 @@ export default class View {
 		this.parentElement.innerHTML = this.getSpinnerMarkup();
 	}
 
-	renderError(message: string = this.errorMessage): void {
-		this.parentElement.innerHTML = this.getErrorMarkup(message);
+	renderError(message = this.errorMessage): void {
+		this.parentElement.innerHTML = this.getMessageMarkup(message, "error");
 	}
 
-	renderMessage(message: string = this.message): void {
+	renderMessage(message = this.message): void {
 		this.parentElement.innerHTML = this.getMessageMarkup(message);
 	}
 
@@ -37,22 +56,9 @@ export default class View {
   `;
 	}
 
-	getErrorMarkup(message: string): string {
+	getMessageMarkup(message: string, type = "message"): string {
 		return `
-				<div class="error">
-          <div>
-            <svg>
-              <use href="${iconPath}#icon-alert-triangle"></use>
-            </svg>
-          </div>
-          <p>${message}</p>
-        </div>
-  `;
-	}
-
-	getMessageMarkup(message: string): string {
-		return `
-				<div class="message">
+				<div class="${type}">
           <div>
             <svg>
               <use href="${iconPath}#icon-alert-triangle"></use>

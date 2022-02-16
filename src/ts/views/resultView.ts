@@ -7,21 +7,25 @@ class ResultView extends View {
 
 	render(results: recipePreviewInterface[]): void {
 		this.parentElement.innerHTML = "";
-		if (!results || (Array.isArray(results) && results.length === 0))
-			this.renderError();
+		// if (!results || (Array.isArray(results) && results.length === 0))
+		// 	this.renderError();
 
 		results.forEach((result) => {
 			this.parentElement.insertAdjacentHTML(
 				"afterbegin",
-				this.getRecipePreviewMarkup(result)
+				this.generateMarkup(result)
 			);
 		});
 	}
 
-	getRecipePreviewMarkup(recipe: recipePreviewInterface): string {
+	generateMarkup(recipe: recipePreviewInterface): string {
+		const id = window.location.hash.slice(1);
+
 		return `
 			<li class="preview">
-				<a class="preview__link" href="#${recipe.id}">
+				<a class="preview__link ${
+					id === recipe.id ? "preview__link--active" : ""
+				}" href="#${recipe.id}">
 					<figure class="preview__fig">
 						<img src="${recipe.image_url}" alt="${recipe.title}" />
 					</figure>

@@ -36,12 +36,11 @@ export async function loadSearchResults(query: string) {
 	}
 }
 
-export function getSearchResultsPage(
-	page: number = 1
-): recipePreviewInterface[] {
+export function getSearchResultsPage(page = 1): recipePreviewInterface[] {
 	const start = (page - 1) * RESULTS_PER_PAGE;
 	let end = page * RESULTS_PER_PAGE;
 
+	if (!state.search.results) return [];
 	if (end > state.search.results.length) end = state.search.results.length;
 	state.search.page = page;
 

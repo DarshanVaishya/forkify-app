@@ -12,6 +12,7 @@ export default class View {
 	}
 
 	update(data: any) {
+		// if (!data || (Array.isArray(data) && data.length === 0)) this.renderError();
 		this.data = data;
 		const newMarkup = this.generateMarkup();
 		const newDOM = document.createRange().createContextualFragment(newMarkup);
@@ -30,7 +31,8 @@ export default class View {
 		}
 	}
 
-	generateMarkup(): string {
+	// TODO: Find how to remove this hack
+	generateMarkup(test: any = ""): string {
 		throw new Error("Method not implemented.");
 	}
 

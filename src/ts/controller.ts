@@ -10,10 +10,11 @@ import paginationView from "./views/paginationVIew";
 
 async function controlRecipes(): Promise<void> {
 	try {
-		const id: string = window.location.hash.slice(1);
+		const id = window.location.hash.slice(1);
 		if (!id) return;
 		recipeView.renderSpinner();
 
+		resultView.render(model.getSearchResultsPage());
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe);
 	} catch (err) {

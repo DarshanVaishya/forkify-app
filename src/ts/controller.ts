@@ -44,13 +44,19 @@ function controlPagination(page: number): void {
 
 function controlServings(newServings: number): void {
 	model.updateServings(newServings);
-	// recipeView.render(model.state.recipe);
+	recipeView.update(model.state.recipe);
+}
+
+function controlAddBookmark() {
+	if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
+	else model.deleteBookmark(model.state.recipe.id);
 	recipeView.update(model.state.recipe);
 }
 
 function init(): void {
 	recipeView.addHandlerRender(controlRecipes);
 	recipeView.addHandlerUpdateServings(controlServings);
+	recipeView.addHandlerAddBookmark(controlAddBookmark);
 	searchView.addHandlerSearch(controlSearchResults);
 	paginationView.addHandlerClick(controlPagination);
 }

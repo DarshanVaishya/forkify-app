@@ -4,7 +4,7 @@ export interface ingredientsInterface {
 	unit: string;
 }
 export interface recipeInterface {
-	id: number;
+	id: string;
 	title: string;
 	publisher: string;
 	source_url: string;
@@ -12,6 +12,7 @@ export interface recipeInterface {
 	servings: number;
 	cooking_time: number;
 	ingredients: [object: ingredientsInterface];
+	bookmarked: boolean;
 }
 
 export interface recipePreviewInterface {
@@ -31,6 +32,7 @@ export interface stateSearchInterface {
 export interface stateInterface {
 	recipe: recipeInterface;
 	search: stateSearchInterface;
+	bookmarks: recipeInterface[];
 }
 
 export interface dataInterface {

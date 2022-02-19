@@ -2,6 +2,7 @@ import {
 	stateInterface,
 	dataInterface,
 	recipePreviewInterface,
+	recipeInterface,
 } from "./util/interfaces";
 import { API_URL, RESULTS_PER_PAGE } from "./util/config";
 import { getJSON } from "./util/helpers";
@@ -14,18 +15,23 @@ export const state: stateInterface = {
 		page: 1,
 		resultsPerPage: RESULTS_PER_PAGE,
 	},
+	bookmarks: [],
 };
 
 export async function loadRecipe(id: string) {
 	try {
 		const data: dataInterface = await getJSON(API_URL + id);
 		state.recipe = data.data.recipe;
+
+		if (state.bookmarks.some((recipe) => recipe.id === id))
+			state.recipe.bookmarked = true;
+		else state.recipe.bookmarked = false;
 	} catch (err) {
 		throw err;
 	}
 }
 
-export async function loadSearchResults(query: string) {
+export async function loadSearchResults(query: string): Promise<void> {
 	try {
 		state.search.query = query;
 
@@ -47,7 +53,7 @@ export function getSearchResultsPage(page = 1): recipePreviewInterface[] {
 	return state.search.results.slice(start, end);
 }
 
-export function updateServings(newServing: number) {
+export function updateServings(newServing: number): void {
 	state.recipe.ingredients.forEach((ingredient) => {
 		ingredient.quantity = +(
 			(newServing * ingredient.quantity) /
@@ -55,4 +61,15 @@ export function updateServings(newServing: number) {
 		).toFixed(2);
 	});
 	state.recipe.servings = newServing;
+}
+
+export function addBookmark(recipe: recipeInterface): void {
+	state.bookmarks.push(recipe);
+	if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
+}
+
+export function deleteBookmark(id: string) {
+	const index = state.bookmarks.findIndex((recipe) => recipe.id === id);
+	state.bookmarks.splice(index, 1);
+	if (id === state.recipe.id) state.recipe.bookmarked = false;
 }

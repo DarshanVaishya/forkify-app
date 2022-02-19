@@ -31,6 +31,16 @@ class RecipeView extends View {
 		});
 	}
 
+	addHandlerAddBookmark(handler: Function) {
+		this.parentElement.addEventListener("click", (e: Event) => {
+			e.preventDefault();
+			const target = e.target as HTMLElement;
+			const btn = target.closest(".btn--bookmark");
+			if (!btn) return;
+			handler();
+		});
+	}
+
 	getIngredientsMarkup(ingredients: [object: ingredientsInterface]): string {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
@@ -99,9 +109,11 @@ class RecipeView extends View {
 
           <div class="recipe__user-generated">
           </div>
-          <button class="btn--round">
+          <button class="btn--round btn--bookmark">
             <svg class="">
-              <use href="${iconPath}#icon-bookmark-fill"></use>
+              <use href="${iconPath}#icon-bookmark${
+			this.data.bookmarked ? "-fill" : ""
+		}"></use>
             </svg>
           </button>
         </div>

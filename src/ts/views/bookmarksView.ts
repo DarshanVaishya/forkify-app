@@ -2,14 +2,19 @@ import View from "./view";
 import { recipePreviewInterface } from "../util/interfaces";
 import previewView from "./previewView";
 
-class ResultView extends View {
-	parentElement = document.querySelector(".results") as HTMLUListElement;
-	errorMessage = "No recipes found for your query! Please try again!";
+class BookmarksView extends View {
+	parentElement = document.querySelector(
+		".bookmarks__list"
+	) as HTMLUListElement;
+	errorMessage = "No bookmarks yet! Find a nice recipe and bookmark it :)";
 
 	render(results: recipePreviewInterface[]): void {
+		if (!results || (Array.isArray(results) && results.length === 0)) {
+			this.renderError();
+			return;
+		}
+
 		this.parentElement.innerHTML = "";
-		// if (!results || (Array.isArray(results) && results.length === 0))
-		// 	this.renderError();
 
 		results.forEach((result) => {
 			this.parentElement.insertAdjacentHTML(
@@ -20,4 +25,4 @@ class ResultView extends View {
 	}
 }
 
-export default new ResultView();
+export default new BookmarksView();

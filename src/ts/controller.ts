@@ -7,6 +7,7 @@ import recipeView from "./views/recipeView";
 import searchView from "./views/searchView";
 import resultView from "./views/resultView";
 import paginationView from "./views/paginationVIew";
+import bookmarkView from "./views/bookmarksView";
 
 async function controlRecipes(): Promise<void> {
 	try {
@@ -15,6 +16,7 @@ async function controlRecipes(): Promise<void> {
 		recipeView.renderSpinner();
 
 		resultView.render(model.getSearchResultsPage());
+		bookmarkView.render(model.state.bookmarks);
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe);
 	} catch (err) {
@@ -51,6 +53,7 @@ function controlAddBookmark() {
 	if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
 	else model.deleteBookmark(model.state.recipe.id);
 	recipeView.update(model.state.recipe);
+	bookmarkView.render(model.state.bookmarks);
 }
 
 function init(): void {

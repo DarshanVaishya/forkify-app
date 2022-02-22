@@ -7,10 +7,10 @@ class ResultView extends View {
 	errorMessage = "No recipes found for your query! Please try again!";
 
 	render(results: recipePreviewInterface[]): void {
-		this.parentElement.innerHTML = "";
-		// if (!results || (Array.isArray(results) && results.length === 0))
-		// 	this.renderError();
+		if (!results || (Array.isArray(results) && results.length === 0))
+			this.renderError();
 
+		this.parentElement.innerHTML = "";
 		results.forEach((result) => {
 			this.parentElement.insertAdjacentHTML(
 				"afterbegin",

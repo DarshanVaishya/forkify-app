@@ -83,9 +83,8 @@ export function deleteBookmark(id: string) {
 function init() {
 	const data = localStorage.getItem("bookmarks");
 	if (!data) return;
-
 	state.bookmarks = JSON.parse(data);
-	console.log(state.bookmarks);
+	console.table(state.bookmarks);
 }
 
 init();

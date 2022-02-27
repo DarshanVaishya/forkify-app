@@ -22,7 +22,7 @@ export const state: stateInterface = {
 
 export async function loadRecipe(id: string) {
 	try {
-		const data: dataInterface = await getJSON(API_URL + id);
+		const data: dataInterface = await getJSON(`${API_URL}${id}?${API_KEY}`);
 		state.recipe = data.data.recipe;
 
 		if (state.bookmarks.some((recipe) => recipe.id === id))
@@ -37,7 +37,10 @@ export async function loadSearchResults(query: string): Promise<void> {
 	try {
 		state.search.query = query;
 
-		const data: dataInterface = await getJSON(`${API_URL}?search=${query}`);
+		const data: dataInterface = await getJSON(
+			`${API_URL}?search=${query}&key=${API_KEY}`
+		);
+
 		state.search.results = data.data.recipes;
 	} catch (err) {
 		throw err;

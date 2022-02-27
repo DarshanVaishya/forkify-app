@@ -3,9 +3,11 @@ import {
 	dataInterface,
 	recipePreviewInterface,
 	recipeInterface,
+	newRecipeInterface,
+	ingredientsInterface,
 } from "./util/interfaces";
-import { API_URL, RESULTS_PER_PAGE } from "./util/config";
-import { getJSON } from "./util/helpers";
+import { API_KEY, API_URL, RESULTS_PER_PAGE } from "./util/config";
+import { getJSON, sendJSON } from "./util/helpers";
 
 export const state: stateInterface = {
 	recipe: undefined,
@@ -78,6 +80,49 @@ export function deleteBookmark(id: string) {
 	state.bookmarks.splice(index, 1);
 	if (id === state.recipe.id) state.recipe.bookmarked = false;
 	persistBookmarks();
+}
+
+export async function uploadRecipe(newRecipe: newRecipeInterface) {
+	try {
+		const ingredients = Object.entries(newRecipe)
+			.filter((entry) => entry[0].startsWith("ingredient") && entry[1] !== "")
+			.map((ing) => {
+				const ingArr: [number, string, string] = ing[1]
+					.replaceAll(" ", "")
+					.split(",");
+
+				if (ingArr.length !== 3 || ingArr[2] === "")
+					throw new Error("Invalid format given for ingredients");
+
+				let [quantity, unit, description] = ingArr;
+
+				quantity = quantity ? +quantity : null;
+				const data: ingredientsInterface = {
+					description,
+					quantity,
+					unit,
+				};
+
+				return data;
+			});
+
+		const uploadData: recipeInterface = {
+			cooking_time: +newRecipe.cookingTime,
+			servings: +newRecipe.servings,
+			image_url: newRecipe.image,
+			source_url: newRecipe.sourceUrl,
+			publisher: newRecipe.publisher,
+			title: newRecipe.title,
+			ingredients: ingredients,
+			bookmarked: false,
+			id: String(Date.now()),
+		};
+		const data = await sendJSON(`${API_URL}?key=${API_KEY}`, uploadData);
+		console.log(data);
+	} catch (err) {
+		console.error(err);
+		throw err;
+	}
 }
 
 function init() {

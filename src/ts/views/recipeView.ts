@@ -41,7 +41,7 @@ class RecipeView extends View {
 		});
 	}
 
-	getIngredientsMarkup(ingredients: [object: ingredientsInterface]): string {
+	getIngredientsMarkup(ingredients: ingredientsInterface[]): string {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
 				return `

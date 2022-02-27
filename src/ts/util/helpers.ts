@@ -1,4 +1,4 @@
-import { dataInterface } from "./interfaces";
+import { dataInterface, recipeInterface } from "./interfaces";
 import { TIMEOUT_SECS } from "./config";
 
 // Can't make it void because of errors
@@ -13,6 +13,29 @@ function timeout(s: number): Promise<Response> {
 export async function getJSON(url: string): Promise<dataInterface> {
 	try {
 		const response = await Promise.race([fetch(url), timeout(TIMEOUT_SECS)]);
+		const data: dataInterface = await response.json();
+		if (!response.ok) throw new Error(`${data.message} (${response.status})`);
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
+}
+
+export async function sendJSON(
+	url: string,
+	uploadData: recipeInterface
+): Promise<dataInterface> {
+	try {
+		const fetchPromise = fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(uploadData),
+		});
+
+		const response = await Promise.race([fetchPromise, timeout(TIMEOUT_SECS)]);
 		const data: dataInterface = await response.json();
 		if (!response.ok) throw new Error(`${data.message} (${response.status})`);
 

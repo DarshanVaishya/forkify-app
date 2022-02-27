@@ -9,6 +9,7 @@ import resultView from "./views/resultView";
 import paginationView from "./views/paginationVIew";
 import bookmarkView from "./views/bookmarksView";
 import addRecipeView from "./views/addRecipeView";
+import { newRecipeInterface } from "./util/interfaces";
 
 async function controlRecipes(): Promise<void> {
 	try {
@@ -57,6 +58,15 @@ function controlAddBookmark() {
 	bookmarkView.render(model.state.bookmarks);
 }
 
+async function controlAddRecipe(newRecipe: newRecipeInterface) {
+	try {
+		await model.uploadRecipe(newRecipe);
+	} catch (err) {
+		console.error(`${err} - #####################3`);
+		addRecipeView.renderError(err.message);
+	}
+}
+
 function init(): void {
 	recipeView.addHandlerRender(controlRecipes);
 	recipeView.addHandlerUpdateServings(controlServings);
@@ -64,6 +74,7 @@ function init(): void {
 	searchView.addHandlerSearch(controlSearchResults);
 	paginationView.addHandlerClick(controlPagination);
 	addRecipeView.init();
+	addRecipeView.addHandlerUpload(controlAddRecipe);
 }
 
 init();

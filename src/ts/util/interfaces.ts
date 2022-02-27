@@ -11,7 +11,7 @@ export interface recipeInterface {
 	image_url: string;
 	servings: number;
 	cooking_time: number;
-	ingredients: [object: ingredientsInterface];
+	ingredients: ingredientsInterface[];
 	bookmarked: boolean;
 }
 
@@ -39,4 +39,19 @@ export interface dataInterface {
 	status: string;
 	message?: string;
 	data?: any;
+}
+
+export interface newRecipeInterface {
+	cookingTime: string;
+	image: string;
+	publisher: string;
+	servings: string;
+	sourceUrl: string;
+	title: string;
+	"ingredient-1": string;
+	"ingredient-2": string;
+	"ingredient-3": string;
+	"ingredient-4": string;
+	"ingredient-5": string;
+	"ingredient-6": string;
 }

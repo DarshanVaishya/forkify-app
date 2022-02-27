@@ -68,6 +68,7 @@ async function controlAddRecipe(newRecipe: newRecipeInterface) {
 		recipeView.render(model.state.recipe);
 		addRecipeView.renderMessage();
 		bookmarkView.render(model.state.bookmarks);
+		window.location.hash = model.state.recipe.id;
 	} catch (err) {
 		console.error(`${err} - #####################3`);
 		addRecipeView.renderError(err.message);

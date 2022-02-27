@@ -29,6 +29,8 @@ Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 - SASS (SCSS)
 - TypeScript
 - Forkify API
+- Local storage API
+- FormData API
 - Webpack
 - Babel
 

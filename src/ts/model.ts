@@ -115,10 +115,12 @@ export async function uploadRecipe(newRecipe: newRecipeInterface) {
 			title: newRecipe.title,
 			ingredients: ingredients,
 			bookmarked: false,
-			id: String(Date.now()),
+			id: "placeholder",
 		};
 		const data = await sendJSON(`${API_URL}?key=${API_KEY}`, uploadData);
-		console.log(data);
+		state.recipe = data;
+		addBookmark(state.recipe);
+		state.recipe.key = API_KEY;
 	} catch (err) {
 		console.error(err);
 		throw err;

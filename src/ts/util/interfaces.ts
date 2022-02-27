@@ -13,6 +13,7 @@ export interface recipeInterface {
 	cooking_time: number;
 	ingredients: ingredientsInterface[];
 	bookmarked: boolean;
+	key?: string;
 }
 
 export interface recipePreviewInterface {
@@ -54,4 +55,12 @@ export interface newRecipeInterface {
 	"ingredient-4": string;
 	"ingredient-5": string;
 	"ingredient-6": string;
+}
+
+export interface respDataInterface {
+	status: string;
+	data: {
+		recipe: recipeInterface;
+	};
+	message?: string;
 }

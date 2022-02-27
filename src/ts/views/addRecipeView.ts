@@ -13,6 +13,7 @@ class AddRecipeView extends View {
 	private btnClose = document.querySelector(
 		".btn--close-modal"
 	) as HTMLButtonElement;
+	public message = "Recipe was successfully added!";
 
 	init() {
 		this.addHandlerShowWindow();

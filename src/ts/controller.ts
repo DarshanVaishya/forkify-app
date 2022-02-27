@@ -60,7 +60,14 @@ function controlAddBookmark() {
 
 async function controlAddRecipe(newRecipe: newRecipeInterface) {
 	try {
+		addRecipeView.renderSpinner();
+
 		await model.uploadRecipe(newRecipe);
+		console.log(model.state.recipe);
+
+		recipeView.render(model.state.recipe);
+		addRecipeView.renderMessage();
+		bookmarkView.render(model.state.bookmarks);
 	} catch (err) {
 		console.error(`${err} - #####################3`);
 		addRecipeView.renderError(err.message);

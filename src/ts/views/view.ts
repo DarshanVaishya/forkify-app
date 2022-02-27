@@ -63,7 +63,9 @@ export default class View {
 				<div class="${type}">
           <div>
             <svg>
-              <use href="${iconPath}#icon-alert-triangle"></use>
+              <use href="${iconPath}#icon-${
+			type === "message" ? "smile" : "alert-triangle"
+		}"></use>
             </svg>
           </div>
           <p>${message}</p>

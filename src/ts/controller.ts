@@ -8,6 +8,7 @@ import searchView from "./views/searchView";
 import resultView from "./views/resultView";
 import paginationView from "./views/paginationVIew";
 import bookmarkView from "./views/bookmarksView";
+import addRecipeView from "./views/addRecipeView";
 
 async function controlRecipes(): Promise<void> {
 	try {
@@ -15,7 +16,7 @@ async function controlRecipes(): Promise<void> {
 		if (!id) return;
 		recipeView.renderSpinner();
 
-		resultView.render(model.getSearchResultsPage());
+		resultView.render(model.getSearchResultsPage(model.state.search.page));
 		bookmarkView.render(model.state.bookmarks);
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe);
@@ -62,6 +63,7 @@ function init(): void {
 	recipeView.addHandlerAddBookmark(controlAddBookmark);
 	searchView.addHandlerSearch(controlSearchResults);
 	paginationView.addHandlerClick(controlPagination);
+	addRecipeView.init();
 }
 
 init();

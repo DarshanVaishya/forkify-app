@@ -84,7 +84,6 @@ function init() {
 	const data = localStorage.getItem("bookmarks");
 	if (!data) return;
 	state.bookmarks = JSON.parse(data);
-	console.table(state.bookmarks);
 }
 
 init();

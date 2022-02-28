@@ -124,12 +124,60 @@ My knowledge in Asynchronous JavaScript was strengthened. I realized and underst
 
 ### Bookmarks screen
 
-![bookmarks.png](/src/img/screenshots/main.png)
+![bookmarks.png](/src/img/screenshots/bookmarks.png)
 
 ## Directory structure
 
 ```
-Placeholder
+.
+├── babel.config.json
+├── package.json
+├── README.md
+├── src
+│   ├── img
+│   │   ├── favicon.png
+│   │   ├── icons.svg
+│   │   ├── logo.png
+│   │   ├── og-image.png
+│   │   └── screenshots
+│   │       ├── bookmarks.png
+│   │       ├── main.png
+│   │       ├── og-tag.png
+│   │       ├── recipe.png
+│   │       └── search.png
+│   ├── sass
+│   │   ├── _base.scss
+│   │   ├── _components.scss
+│   │   ├── _header.scss
+│   │   ├── main.scss
+│   │   ├── _preview.scss
+│   │   ├── _recipe.scss
+│   │   ├── _searchResults.scss
+│   │   └── _upload.scss
+│   ├── template.html
+│   └── ts
+│       ├── controller.ts
+│       ├── model.ts
+│       ├── util
+│       │   ├── config.ts
+│       │   ├── helpers.ts
+│       │   └── interfaces.ts
+│       └── views
+│           ├── addRecipeView.ts
+│           ├── bookmarksView.ts
+│           ├── paginationVIew.ts
+│           ├── previewView.ts
+│           ├── recipeView.ts
+│           ├── resultView.ts
+│           ├── searchView.ts
+│           └── view.ts
+├── tsconfig.json
+├── webpack.common.js
+├── webpack.dev.js
+├── webpack.prod.js
+└── yarn.lock
+
+7 directories, 39 files
 ```
 
 ## Collaboration

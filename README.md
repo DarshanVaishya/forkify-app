@@ -66,24 +66,24 @@ When performing data update, I realized that I was re-rendering the whole elemen
 ```ts
 // Had to use any as a lot of different data relied on this update
 update(data: any) {
-		this.data = data;
-		const newMarkup = this.generateMarkup();
+	this.data = data;
+	const newMarkup = this.generateMarkup();
 
-		const newDOM = document.createRange().createContextualFragment(newMarkup);
-		const newEls = Array.from(newDOM.querySelectorAll("*"));
-		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
+	const newDOM = document.createRange().createContextualFragment(newMarkup);
+	const newEls = Array.from(newDOM.querySelectorAll("*"));
+	const curEls = Array.from(this.parentElement.querySelectorAll("*"));
 
-		for (let i = 0; i < curEls.length; i++) {
-			if (curEls[i].isEqualNode(newEls[i])) continue;
+	for (let i = 0; i < curEls.length; i++) {
+		if (curEls[i].isEqualNode(newEls[i])) continue;
 
-			if (newEls[i].firstChild?.nodeValue.trim() !== "")
-				curEls[i].textContent = newEls[i].textContent;
+		if (newEls[i].firstChild?.nodeValue.trim() !== "")
+			curEls[i].textContent = newEls[i].textContent;
 
-			Array.from(newEls[i].attributes).forEach((attr) => {
-				curEls[i].setAttribute(attr.name, attr.value);
-			});
-		}
+		Array.from(newEls[i].attributes).forEach((attr) => {
+			curEls[i].setAttribute(attr.name, attr.value);
+		});
 	}
+}
 ```
 
 Another challenge was to upload new recipes to the API. I learnt that fetch API can be used to upload data as well. I used the `POST` method for uploading.

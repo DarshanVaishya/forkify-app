@@ -8,11 +8,6 @@ class RecipeView extends View {
 	errorMessage = "We couldn't find that recipe. Please try another one!";
 	message = "";
 
-	render(data: recipeInterface) {
-		this.data = data;
-		this.parentElement.innerHTML = this.generateMarkup();
-	}
-
 	// TODO: Learn how to give this a type
 	addHandlerRender(handler: any): void {
 		["hashchange", "load"].forEach((event) => {
@@ -33,7 +28,6 @@ class RecipeView extends View {
 
 	addHandlerAddBookmark(handler: Function) {
 		this.parentElement.addEventListener("click", (e: Event) => {
-			e.preventDefault();
 			const target = e.target as HTMLElement;
 			const btn = target.closest(".btn--bookmark");
 			if (!btn) return;
@@ -45,16 +39,16 @@ class RecipeView extends View {
 		return ingredients
 			.map((ingredient: ingredientsInterface) => {
 				return `
-							<li class="recipe__ingredient">
-								<svg class="recipe__icon">
-									<use href="${iconPath}#icon-check"></use>
-								</svg>
-								<div class="recipe__quantity">${ingredient.quantity || ""}</div>
-								<div class="recipe__description">
-									<span class="recipe__unit">${ingredient.unit}</span>
-									${ingredient.description}
-								</div>
-							</li>`;
+					<li class="recipe__ingredient">
+						<svg class="recipe__icon">
+							<use href="${iconPath}#icon-check"></use>
+						</svg>
+						<div class="recipe__quantity">${ingredient.quantity || ""}</div>
+						<div class="recipe__description">
+							<span class="recipe__unit">${ingredient.unit}</span>
+							${ingredient.description}
+						</div>
+					</li>`;
 			})
 			.join("");
 	}

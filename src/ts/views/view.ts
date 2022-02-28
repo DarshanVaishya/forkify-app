@@ -6,21 +6,29 @@ export default class View {
 	protected message: string;
 	protected data: any;
 
-	render(data: any): void {
+	render(data: any, render = true): any {
+		if (!data || (Array.isArray(data) && data.length === 0))
+			return this.renderError();
+
 		this.data = data;
-		this.parentElement.innerHTML = this.generateMarkup();
+		const markup = this.generateMarkup();
+
+		if (!render) return markup;
+
+		this.clear();
+		this.parentElement.insertAdjacentHTML("afterbegin", markup);
 	}
 
 	update(data: any) {
-		// if (!data || (Array.isArray(data) && data.length === 0)) this.renderError();
 		this.data = data;
 		const newMarkup = this.generateMarkup();
+
 		const newDOM = document.createRange().createContextualFragment(newMarkup);
 		const newEls = Array.from(newDOM.querySelectorAll("*"));
 		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
 
 		for (let i = 0; i < curEls.length; i++) {
-			if (newEls[i].isEqualNode(curEls[i])) continue;
+			if (!newEls[i].isEqualNode(curEls[i])) continue;
 
 			if (newEls[i].firstChild?.nodeValue.trim() !== "")
 				curEls[i].textContent = newEls[i].textContent;
@@ -31,9 +39,13 @@ export default class View {
 		}
 	}
 
+	clear() {
+		this.parentElement.innerHTML = "";
+	}
+
 	// TODO: Find how to remove this hack
 	generateMarkup(test: any = ""): string {
-		throw new Error("Method not implemented.");
+		throw new Error("generateMarkup not implemented.");
 	}
 
 	renderSpinner(): void {

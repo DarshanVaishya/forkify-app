@@ -1,5 +1,5 @@
-import { iconPath } from "../util/config";
 import View from "./view";
+import { iconPath } from "../util/config";
 
 class AddRecipeView extends View {
 	parentElement = document.querySelector(".upload") as HTMLFormElement;
@@ -17,7 +17,7 @@ class AddRecipeView extends View {
 
 	init() {
 		this.addHandlerShowWindow();
-		this.addHandlerCloseWindow();
+		this.addHandlerHideWindow();
 	}
 
 	toggleWindow() {
@@ -32,7 +32,7 @@ class AddRecipeView extends View {
 		});
 	}
 
-	addHandlerCloseWindow() {
+	addHandlerHideWindow() {
 		this.btnClose.addEventListener("click", this.toggleWindow.bind(this));
 		this.overlay.addEventListener("click", this.toggleWindow.bind(this));
 	}

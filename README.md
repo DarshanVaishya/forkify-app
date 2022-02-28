@@ -74,7 +74,7 @@ update(data: any) {
 		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
 
 		for (let i = 0; i < curEls.length; i++) {
-			if (!curEls[i].isEqualNode(newEls[i])) continue;
+			if (curEls[i].isEqualNode(newEls[i])) continue;
 
 			if (newEls[i].firstChild?.nodeValue.trim() !== "")
 				curEls[i].textContent = newEls[i].textContent;
@@ -86,13 +86,45 @@ update(data: any) {
 	}
 ```
 
+Another challenge was to upload new recipes to the API. I learnt that fetch API can be used to upload data as well. I used the `POST` method for uploading.
+
+```ts
+fetch(url, {
+	method: "POST",
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: JSON.stringify(uploadData),
+});
+```
+
 ## Learning outcomes
 
-Placeholder
+This project was a big undertaking for me, as I have never worked on a project of this scale. I learned a lot about the Model View Controller (MVC) Architecture. And for an added challenge, I made this project in Typescript.
+
+My knowledge in Asynchronous JavaScript was strengthened. I realized and understood the need for TypeScript and how it helps in preventing bugs and unexpected behaviour.
 
 ## Screenshots
 
-Placeholder
+### Open Graph card
+
+![Open Graph](/src/img/screenshots/og-tag.png)
+
+### Main screen
+
+![main](/src/img/screenshots/main.png)
+
+### Search screen
+
+![search](/src/img/screenshots/search.png)
+
+### Recipe screen
+
+![recipe](/src/img/screenshots/recipe.png)
+
+### Bookmarks screen
+
+![bookmarks.png](/src/img/screenshots/main.png)
 
 ## Directory structure
 

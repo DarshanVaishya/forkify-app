@@ -15,8 +15,7 @@ export default class View {
 
 		if (!render) return markup;
 
-		this.clear();
-		this.parentElement.insertAdjacentHTML("afterbegin", markup);
+		this.parentElement.innerHTML = markup;
 	}
 
 	update(data: any) {
@@ -28,7 +27,7 @@ export default class View {
 		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
 
 		for (let i = 0; i < curEls.length; i++) {
-			if (!newEls[i].isEqualNode(curEls[i])) continue;
+			if (!curEls[i].isEqualNode(newEls[i])) continue;
 
 			if (newEls[i].firstChild?.nodeValue.trim() !== "")
 				curEls[i].textContent = newEls[i].textContent;
@@ -37,10 +36,6 @@ export default class View {
 				curEls[i].setAttribute(attr.name, attr.value);
 			});
 		}
-	}
-
-	clear() {
-		this.parentElement.innerHTML = "";
 	}
 
 	// TODO: Find how to remove this hack

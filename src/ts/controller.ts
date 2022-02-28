@@ -54,7 +54,7 @@ function controlServings(newServings: number): void {
 function controlAddBookmark() {
 	if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
 	else model.deleteBookmark(model.state.recipe.id);
-	recipeView.update(model.state.recipe);
+	recipeView.render(model.state.recipe);
 	bookmarkView.render(model.state.bookmarks);
 }
 

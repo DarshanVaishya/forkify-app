@@ -1,5 +1,6 @@
 import View from "./view";
 import { recipePreviewInterface } from "../util/interfaces";
+import { iconPath } from "../util/config";
 
 class PreviewView extends View {
 	generateMarkup(recipe: recipePreviewInterface): string {
@@ -8,17 +9,22 @@ class PreviewView extends View {
 		return `
 			<li class="preview">
 				<a class="preview__link ${
-					id === recipe.id ? "preview__link--active" : ""
-				}" href="#${recipe.id}">
+					this.data.id === id ? "preview__link--active" : ""
+				}" href="#${this.data.id}">
 					<figure class="preview__fig">
-						<img src="${recipe.image_url}" alt="${recipe.title}" />
+						<img src="${this.data.image_url}" alt="${this.data.title}" />
 					</figure>
 					<div class="preview__data">
-						<h4 class="preview__title">${recipe.title}</h4>
-						<p class="preview__publisher">${recipe.publisher}</p>
+						<h4 class="preview__title">${this.data.title}</h4>
+						<p class="preview__publisher">${this.data.publisher}</p>
+						<div class="preview__user-generated ${this.data.key ? "" : "hidden"}">
+							<svg>
+								<use href="${iconPath}#icon-user"></use>
+							</svg>
+						</div>
 					</div>
 				</a>
-			</li>
+		</li>
 		`;
 	}
 }

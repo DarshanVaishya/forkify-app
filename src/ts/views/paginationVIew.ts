@@ -27,7 +27,7 @@ class PaginationView extends View {
 		if (currentPage === numPages && numPages > 1) return this.getButton("prev");
 		if (currentPage < numPages)
 			return this.getButton("prev") + this.getButton("next");
-		else return "";
+		return "";
 	}
 
 	getButton(type: string): string {

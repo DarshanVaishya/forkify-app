@@ -17,8 +17,8 @@ async function controlRecipes(): Promise<void> {
 		if (!id) return;
 		recipeView.renderSpinner();
 
-		resultView.render(model.getSearchResultsPage(model.state.search.page));
-		bookmarkView.render(model.state.bookmarks);
+		resultView.update(model.getSearchResultsPage(model.state.search.page));
+		bookmarkView.update(model.state.bookmarks);
 		await model.loadRecipe(id);
 		recipeView.render(model.state.recipe);
 	} catch (err) {
@@ -54,7 +54,7 @@ function controlServings(newServings: number): void {
 function controlAddBookmark() {
 	if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
 	else model.deleteBookmark(model.state.recipe.id);
-	recipeView.update(model.state.recipe);
+	recipeView.render(model.state.recipe);
 	bookmarkView.render(model.state.bookmarks);
 }
 
@@ -63,7 +63,6 @@ async function controlAddRecipe(newRecipe: newRecipeInterface) {
 		addRecipeView.renderSpinner();
 
 		await model.uploadRecipe(newRecipe);
-		console.log(model.state.recipe);
 
 		recipeView.render(model.state.recipe);
 		addRecipeView.renderMessage();

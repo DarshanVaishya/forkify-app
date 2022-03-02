@@ -53,24 +53,24 @@ class AddRecipeView extends View {
 				<div class="upload__column">
 					<h3 class="upload__heading">Recipe data</h3>
 					<label>Title</label>
-					<input value="TEST1234567890" required name="title" type="text" />
-					<label>URL</label>
-					<input value="TEST1234567890" required name="sourceUrl" type="text" />
+					<input value="John Doe's Pizza" required name="title" type="text" />
+					<label>Recipe URL</label>
+					<input value="https://www.bbcgoodfood.com/recipes/pizza-margherita-4-easy-steps" required name="sourceUrl" type="text" />
 					<label>Image URL</label>
-					<input value="TEST1234567890" required name="image" type="text" />
+					<input value="https://source.unsplash.com/random/?pizza" required name="image" type="text" />
 					<label>Publisher</label>
-					<input value="TEST1234567890" required name="publisher" type="text" />
+					<input value="BBC" required name="publisher" type="text" />
 					<label>Prep time</label>
-					<input value="23" required name="cookingTime" type="number" />
+					<input value="60" required name="cookingTime" type="number" />
 					<label>Servings</label>
-					<input value="23" required name="servings" type="number" />
+					<input value="2" required name="servings" type="number" />
 				</div>
 
 				<div class="upload__column">
 					<h3 class="upload__heading">Ingredients</h3>
 					<label>Ingredient 1</label>
 					<input
-						value="0.5,kg,Rice"
+						value="0.5,kg,Flour"
 						type="text"
 						required
 						name="ingredient-1"
@@ -78,14 +78,14 @@ class AddRecipeView extends View {
 					/>
 					<label>Ingredient 2</label>
 					<input
-						value="1,,Avocado"
+						value=",,Cheese"
 						type="text"
 						name="ingredient-2"
 						placeholder="Format: 'Quantity,Unit,Description'"
 					/>
 					<label>Ingredient 3</label>
 					<input
-						value=",,salt"
+						value="1,L,Tomato sauce"
 						type="text"
 						name="ingredient-3"
 						placeholder="Format: 'Quantity,Unit,Description'"

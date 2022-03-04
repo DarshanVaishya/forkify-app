@@ -26,8 +26,8 @@ export default class View {
 		const newEls = Array.from(newDOM.querySelectorAll("*"));
 		const curEls = Array.from(this.parentElement.querySelectorAll("*"));
 
-		for (let i = 0; i < curEls.length; i++) {
-			if (curEls[i].isEqualNode(newEls[i])) continue;
+		for (let i = 0; i < newEls.length; i++) {
+			if (newEls[i].isEqualNode(curEls[i])) continue;
 
 			if (newEls[i].firstChild?.nodeValue.trim() !== "")
 				curEls[i].textContent = newEls[i].textContent;

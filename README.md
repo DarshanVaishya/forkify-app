@@ -1,4 +1,4 @@
-# Forkify App (WIP)
+# Forkify App
 
 <details>
  <summary><strong>Table of Contents</strong> (click to expand)</summary>

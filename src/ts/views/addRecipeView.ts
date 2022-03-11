@@ -78,14 +78,12 @@ class AddRecipeView extends View {
 					/>
 					<label>Ingredient 2</label>
 					<input
-						value=",,Cheese"
 						type="text"
 						name="ingredient-2"
 						placeholder="Format: 'Quantity,Unit,Description'"
 					/>
 					<label>Ingredient 3</label>
 					<input
-						value="1,L,Tomato sauce"
 						type="text"
 						name="ingredient-3"
 						placeholder="Format: 'Quantity,Unit,Description'"

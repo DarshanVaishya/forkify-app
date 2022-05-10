@@ -39,10 +39,6 @@ Live preview: [Link](https://forkify.darshanvaishya.xyz/)
 
 Requirements: `node` and `npm`
 
-If you want to use NPM, then replace `yarn` with `npm` in all of the commands.
-
-OR
-
 If you do not have `yarn` installed, install it using
 
 ```sh

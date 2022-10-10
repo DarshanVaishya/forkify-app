@@ -19,7 +19,7 @@
 
 Forkify app is a web app where users can search through more than 1 million recipes to find what they need. It shows all the necessary ingredients and how to make the dish. The users can bookmark their favourite recipes as well as add their own ones to the website. It has a beautiful and feature rich UI. The website is fully response in variety of screen sizes.
 
-Live preview: [Link](https://forkify.darshanvaishya.xyz/)
+Live preview: [Link](https://forkify.darshanv.dev)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5e90623e-a903-425a-8292-98b20c3f3e80/deploy-status)](https://app.netlify.com/sites/loving-hugle-52e1c6/deploys)
 
